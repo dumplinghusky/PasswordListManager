@@ -1,6 +1,6 @@
-***THIS PROJECT IS STILL UNDERDEVELOPMENT AND ONLY SORTA WORKS IN ITS CURRENT STATE***
+***THIS PROJECT IS STILL UNDER DEVELOPMENT AND ONLY SORTA WORKS IN ITS CURRENT STATE***
 # Password List Generator
-Create a password wordlist with patterns and known info.
+Create a targeted password wordlist with patterns and known info.
 
 ## About
 
@@ -15,7 +15,8 @@ Humans include personal information in their passwords, information that can oft
 * Celebrity names
 * The name of the website the password is for
 
-This program is an interactive list generator that will create a password wordlist and can be used in penetration testing and forensic investigations to crack passwords. 
+This program is an interactive list generator that will create a password wordlist and can be used in penetration testing and forensic investigations to crack passwords.
+It also is going to be a utility to manage and trim wordlists but those features are still under development.
 
 ### Usage
 
