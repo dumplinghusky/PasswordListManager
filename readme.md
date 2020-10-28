@@ -1,5 +1,5 @@
 ***THIS PROJECT IS STILL UNDER DEVELOPMENT AND ONLY SORTA WORKS IN ITS CURRENT STATE***
-# Password List Generator
+# Password List Manager
 Create a targeted password wordlist with patterns and known info.
 
 ## About
@@ -17,7 +17,7 @@ Run the interactive program with:
 
 > $python main.py
 
-The password list will be created in the same folder in .txt
+The password list will output in the same folder as .py file in .txt format
 
 ### Requirements
 
