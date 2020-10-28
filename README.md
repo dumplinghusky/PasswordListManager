@@ -1,3 +1,4 @@
+####THIS PROJECT IS STILL UNDERDEVELOPMENT AND ONLY SORTA WORKS IN ITS CURRENT STATE
 # Password List Generator
 Create a password wordlist with patterns and known info.
 
@@ -14,13 +15,13 @@ Humans include personal information in their passwords, information that can oft
 * Celebrity names
 * The name of the website the password is for
 
-This program is an interactive list generator that will create a password wordlist and can be used in penetration testing and forensic investigations to crack passwords.
+This program is an interactive list generator that will create a password wordlist and can be used in penetration testing and forensic investigations to crack passwords. 
 
 ### Usage
 
 Run the interactive program with:
 
-> $python setup.py
+> $python main.py
 
 The password list will be created in the same folder in .txt
 
@@ -28,5 +29,5 @@ The password list will be created in the same folder in .txt
 
 Python 3
 
-
+Forked from utpalbase's PasswordListGenerator(https://github.com/utpalbalse/PasswordListGenerator)
 Inspired by [CUPP](https://github.com/Mebus/cupp) and [BEWGor](https://github.com/berzerk0/BEWGor)
