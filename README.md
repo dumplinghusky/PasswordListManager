@@ -5,8 +5,10 @@ Create a targeted password wordlist with patterns and known info.
 ## About
 
 This generator creates sophisticated targeted wordlists for dictionary attacks 
+asks questions about the target and uses the keywords to generate wordlist also allows for merging related wordlists to current wordlist
 
-This program is an interactive list generator that will create a password wordlist and can be used in penetration testing and forensic investigations to crack passwords.
+Can be used in penetration testing to crack passwords or for CTF practice.
+
 It also is going to be a utility to manage and trim wordlists but those features are still under development.
 
 ### Getting Started
