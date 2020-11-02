@@ -1,11 +1,11 @@
 import os
-#import urllib2
+
+# import urllib2
 
 list = []
 names = []
 temp_names = []
 phoneNo = ''
-
 
 print(" __    __              _ _ _     _")
 print("/ / /\ \ \___  _ __ __| | (_)___| |_    /\/\   __ _ _ __   __ _  __ _  ___ _ __")
@@ -13,36 +13,6 @@ print("\ \/  \/ / _ \| '__/ _` | | / __| __|  /    \ / _` | '_ \ / _` |/ _` |/ _
 print(" \  /\  / (_) | | | (_| | | \__ \ |_  / /\/\ \ (_| | | | | (_| | (_| |  __/ |")
 print("  \/  \/ \___/|_|  \__,_|_|_|___/\__| \/    \/\__,_|_| |_|\__,_|\__, |\___|_|")
 print("                                                                |___/         ")
-
-
-
-def ListOfImportantWords():
-    names.append(input("First name:"))
-    names.append(input("Last Name:"))
-    names.append(input("Nickname:"))
-    print("\n")
-    names.append(input("Partners name:"))
-    names.append(input("Partners Nickname:"))
-    print("\n")
-    names.append(input("Pets name:"))
-    names.append(input("Company/School name:"))
-    print("\n")
-    names.append(input("Childs name:"))
-    names.append(input("Childs nickname:"))
-    print("\n")
-    names.append(input("City:"))
-    names.append(input("Country:"))
-    names.append(input("Favourite color:"))
-    print("\n")
-    names.append(input("Favorite Celebrities/Athletes:"))
-    print("Enter all other keywords: ")
-    while True:
-        inp = input()
-        if inp == '':
-            break
-        names.append(inp)
-    while ('' in names):
-        names.remove('')
 
 
 def permute(inp):
@@ -84,21 +54,24 @@ def WriteToFile(list):
         for item in list:
             f.write("%s\n" % item)
 
-def PostRun(WriteToFile,list):
+
+def PostRun(WriteToFile, list):
     question = input("Do you want to merge with another wordlist on your computer? (Y/N)")
     if question == "N" or question == "n":
         WriteToFile(list)
     elif question == "Y" or question == "y":
-        print("still underdevelopment")
+        print("still under development")
+
+
 def mergewordlists(list):
     question = input("Merge with predefined wordlist?(requires internet)(Y/N)")
     if question == "N" or question == "n":
-        PostRun(WriteToFile,list)
+        PostRun(WriteToFile, list)
     elif question == "Y" or question == "y":
         print("Categories:")
         print("dogs,celebrities,holidays,food,tvmovies")
         urlquestion = input("What is this person interested in?")
-        #data = urllib2.urlopen(target_url)
+        # data = urllib2.urlopen(target_url)
 
     filename = input("enter a file name without extension")
     filename.append(".txt")
@@ -111,14 +84,16 @@ def mergewordlists(list):
 
 
 def mergewordlists(list):
-        print("Categories:")
-        print("dogs,celebrities,holidays,food,tvmovies")
-        urlquestion = input("What is this person interested in?")
-        # data = urllib2.urlopen(target_url)
+    print("Categories:")
+    print("dogs,celebrities,holidays,food,tvmovies")
+    urlquestion = input("What is this person interested in?")
+    # data = urllib2.urlopen(target_url)
 
 
 def menu_select(list):
-    question = input(" Press 1 to merge with a wordlist on HD\n Press 2 to merge with predefined wordlist from repository(requires internet)\n Press 3 to write wordlist.txt")
+    question = input(
+        " Press 1 to merge with a wordlist on HD\n Press 2 to merge with predefined wordlist from repository(requires internet)\n Press 3 to write wordlist.txt")
+    print("")
     if question == 1:
         mergeexisting(list)
     elif question == 2:
@@ -132,7 +107,7 @@ def menu_select(list):
 
 def questions():
     global year, dob, phoneNo, month, day
-    dob = input("Date of birth(MMDDYYYY):")
+    dob = input("Target date of birth(MMDDYYYY):")
     if (len(dob) == 8):
         month = dob[:2]
         day = dob[2:4]
@@ -143,23 +118,87 @@ def questions():
     phoneNo = input("Enter phone no:")
     return dob, phoneNo, month, day, year
 
-#things to add
-#celebrities/athletes
-#movies/music
-#favorite animal/dogbreeds/cats
-#importance-weighting
-#foods
-#wordlist merging
 
-questions()
+def flag_questions(names):
+    flags = input("Enter flags to create profile, h for help, blank to exit\n")
+    if flags == '':
+        exit()
+    questions = True
+    while questions == True:
+        if "p" in flags:
+            num_pets = input('how many pets?')
+            for i in len(num_pets):
+                names.append[input('pet name:')]
+        if 'f' in flags:
+            names.append[input('Childs name:')]
+            names.append[input("Childs nickname:")]
+            names.append[input("Partners name:")]
+            names.append[input("Partners Nickname:")]
+        if 'm' in flags:
+            names.append(input("Favorite Celebrities/Athletes:"))
+            names.append(input("Favorite movie/tv show:"))
+        if 's' in flags:
+            names.append('!', '@', '$', '%')
+            names.append(input("!,@,$,% added - any additional? (blank to continue)"))
+        if 'g' in flags:
+            names.append(input("Current City:"))
+            names.append(input("Country:"))
+            names.append(input("Favourite color:"))
+            names.append(input("Nickname:"))
+        if 'w' in flags:
+            names.append(input("Company/School name:"))
+        if 'c' in flags:
+            print("Enter all other keywords: ")
+            while True:
+                inp = input()
+            if inp == '':
+                break
+                names.append(inp)
+        if 'h' in flags:
+            print("flags are p-pet, f-family, m-media, s-symbol, g-general, w-work/school, c-custom")
+            print("for example, input: pfc")
+            print("sets profile flags for pet family and custom")
+            print("at least 3 flags recommended, blank to continue")
+            print("")
+            flag_questions(names)
+        else:
+            questions = False
+        # cleans out '' from names list
+    while ('' in names):
+        names.remove('')
+    return names
+
+    print("Enter all other keywords: ")
+    while True:
+        inp = input()
+        if inp == '':
+            break
+        names.append(inp)
+    while ('' in names):
+        names.remove('')
 
 
-ListOfImportantWords()
-for i in names:
-    permute(i)
-names = names + temp_names
+def startPermute(names, temp_names):
+    for i in names:
+        permute(i)
+    names = names + temp_names
 
 
-WordListCreator(list)
-menu_select(list)
+# things to add
+
+# importance-weighting
+# foods
+# wordlist merging
+# wildcards
+
+def run():
+    questions()
+    flag_questions(names)
+    # ListOfImportantWords()
+    startPermute(names, temp_names)
+    WordListCreator(list)
+    menu_select(list)
+
+
+run()
 
