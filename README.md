@@ -25,4 +25,4 @@ Python 3
 
 Internet Connection (for some features)
 
-***Question format and Permutation function stolen from utpalbase's PasswordListGenerator(https://github.com/utpalbalse/PasswordListGenerator) and inspiration from BEWGor ***
+***Permutation function stolen from utpalbase's PasswordListGenerator(https://github.com/utpalbalse/PasswordListGenerator) and inspiration from BEWGor ***
