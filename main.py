@@ -78,19 +78,17 @@ def WordListCreator(list):
 
 
 def WriteToFile(list):
-    with open('wordlist.txt', 'w') as f:
+    filename = input("enter a file name without extension")
+    filename.append(".txt")
+    with open(filename, 'w') as f:
         for item in list:
             f.write("%s\n" % item)
 
     def mergeexisting(list):
-        print("still underdevelopment")
+        print("still under development")
 
 
 def mergewordlists(list):
-    question = input("Merge with predefined wordlist?(requires internet)(Y/N)")
-    if question == "N" or question == "n":
-        PostRun(WriteToFile, list)
-    elif question == "Y" or question == "y":
         print("Categories:")
         print("dogs,celebrities,holidays,food,tvmovies")
         urlquestion = input("What is this person interested in?")
@@ -99,7 +97,7 @@ def mergewordlists(list):
 
 def menu_select(list):
     question = input(
-        " Press 1 to merge with another\n Press 2 to merge with predefined wordlist?(requires internet)\n Press 3 to write to wordlist")
+        " Press 1 to merge with a wordlist on HD\n Press 2 to merge with predefined wordlist from repository(requires internet)\n Press 3 to write wordlist.txt")
     if question == 1:
         mergeexisting(list)
     if question == 2:
