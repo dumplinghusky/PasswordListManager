@@ -5,6 +5,7 @@ list = []
 names = []
 temp_names = []
 phoneNo = ''
+<<<<<<< HEAD
 
 
 
@@ -16,6 +17,20 @@ print("\ \/  \/ / _ \| '__/ _` | | / __| __|  /    \ / _` | '_ \ / _` |/ _` |/ _
 print(" \  /\  / (_) | | | (_| | | \__ \ |_  / /\/\ \ (_| | | | | (_| | (_| |  __/ |")
 print("  \/  \/ \___/|_|  \__,_|_|_|___/\__| \/    \/\__,_|_| |_|\__,_|\__, |\___|_|")
 print("                                                                |___/         ")
+=======
+dob = input("Date of birth(MMDDYYYY):")
+if (len(dob) == 8):
+    month = dob[:2]
+    day = dob[2:4]
+    year = dob[4:]
+else:
+    print("Wrong format for DOB, make sure it is 8 numbers in MMDDYYYY")
+    exit()
+
+phoneNo = input("Enter phone no:")
+
+
+>>>>>>> add-license-1
 def ListOfImportantWords():
     names.append(input("First name:"))
     names.append(input("Last Name:"))
@@ -97,6 +112,7 @@ def mergewordlists(list):
         print("dogs,celebrities,holidays,food,tvmovies")
         urlquestion = input("What is this person interested in?")
         #data = urllib2.urlopen(target_url)
+<<<<<<< HEAD
 def questions():
     global year, dob, phoneNo, month, day
     dob = input("Date of birth(MMDDYYYY):")
@@ -109,6 +125,9 @@ def questions():
         exit()
     phoneNo = input("Enter phone no:")
     return dob, phoneNo, month, day, year
+=======
+
+>>>>>>> add-license-1
 #things to add
 #celebrities/athletes
 #movies/music
@@ -116,12 +135,21 @@ def questions():
 #importance-weighting
 #foods
 #wordlist merging
+<<<<<<< HEAD
 questions()
+=======
+
+>>>>>>> add-license-1
 ListOfImportantWords()
 for i in names:
     permute(i)
 names = names + temp_names
+<<<<<<< HEAD
 
 WordListCreator(list)
 mergewordlists(list)
 
+=======
+WordListCreator(list)
+mergewordlists(list)
+>>>>>>> add-license-1

@@ -1,0 +1,10 @@
+/*
+ * ------------------------------------------------------------
+ * "THE BEERWARE LICENSE" (Revision 42):
+ * dumplinghusky wrote this code. As long as you retain this 
+ * notice, you can do whatever you want with this stuff. If we
+ * meet someday, and you think this stuff is worth it, you can
+ * buy me a beer in return.
+ * ------------------------------------------------------------
+ */
+ *****Credit to https://github.com/utpalbalse/PasswordListGenerator for the Permute function and other related features, not trying to take credit for any of that.*****
