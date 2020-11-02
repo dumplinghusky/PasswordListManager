@@ -17,7 +17,7 @@ Run the interactive program with:
 
 > $python3 main.py
 
-For Windows The password list will output in the same folder as .py file in .txt format. On macOSX it will go to your user folder.
+For Windows the password list will output in the same folder as .py file in .txt format. On macOSX it will go to your user folder.
 
 ### Requirements
 
