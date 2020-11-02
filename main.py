@@ -6,6 +6,9 @@ names = []
 temp_names = []
 phoneNo = ''
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> add-license-1
 
 
 
@@ -17,6 +20,7 @@ print("\ \/  \/ / _ \| '__/ _` | | / __| __|  /    \ / _` | '_ \ / _` |/ _` |/ _
 print(" \  /\  / (_) | | | (_| | | \__ \ |_  / /\/\ \ (_| | | | | (_| | (_| |  __/ |")
 print("  \/  \/ \___/|_|  \__,_|_|_|___/\__| \/    \/\__,_|_| |_|\__,_|\__, |\___|_|")
 print("                                                                |___/         ")
+<<<<<<< HEAD
 =======
 dob = input("Date of birth(MMDDYYYY):")
 if (len(dob) == 8):
@@ -30,6 +34,8 @@ else:
 phoneNo = input("Enter phone no:")
 
 
+>>>>>>> add-license-1
+=======
 >>>>>>> add-license-1
 def ListOfImportantWords():
     names.append(input("First name:"))
@@ -93,6 +99,7 @@ def WordListCreator(list):
 
 
 def WriteToFile(list):
+<<<<<<< HEAD
     with open('wordlist.txt', 'w') as f:
         for item in list:
             f.write("%s\n" % item)
@@ -113,6 +120,38 @@ def mergewordlists(list):
         urlquestion = input("What is this person interested in?")
         #data = urllib2.urlopen(target_url)
 <<<<<<< HEAD
+=======
+    filename = input("enter a file name without extension")
+    filename.append(".txt")
+    with open(filename, 'w') as f:
+        for item in list:
+            f.write("%s\n" % item)
+
+    def mergeexisting(list):
+        print("still under development")
+
+
+def mergewordlists(list):
+        print("Categories:")
+        print("dogs,celebrities,holidays,food,tvmovies")
+        urlquestion = input("What is this person interested in?")
+        # data = urllib2.urlopen(target_url)
+
+
+def menu_select(list):
+    question = input(
+        " Press 1 to merge with a wordlist on HD\n Press 2 to merge with predefined wordlist from repository(requires internet)\n Press 3 to write wordlist.txt")
+    elif question == 1:
+        mergeexisting(list)
+    elif question == 2:
+        mergewordlists(list)
+    elif question == 3:
+        WriteToFile(list)
+    else
+        print("command not found try again")
+        menu_select(list)
+
+>>>>>>> add-license-1
 def questions():
     global year, dob, phoneNo, month, day
     dob = input("Date of birth(MMDDYYYY):")
@@ -125,8 +164,11 @@ def questions():
         exit()
     phoneNo = input("Enter phone no:")
     return dob, phoneNo, month, day, year
+<<<<<<< HEAD
 =======
 
+>>>>>>> add-license-1
+=======
 >>>>>>> add-license-1
 #things to add
 #celebrities/athletes
@@ -136,14 +178,19 @@ def questions():
 #foods
 #wordlist merging
 <<<<<<< HEAD
+<<<<<<< HEAD
 questions()
 =======
 
+>>>>>>> add-license-1
+=======
+questions()
 >>>>>>> add-license-1
 ListOfImportantWords()
 for i in names:
     permute(i)
 names = names + temp_names
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 WordListCreator(list)
@@ -152,4 +199,10 @@ mergewordlists(list)
 =======
 WordListCreator(list)
 mergewordlists(list)
+>>>>>>> add-license-1
+=======
+
+WordListCreator(list)
+menu_select(list)
+
 >>>>>>> add-license-1
