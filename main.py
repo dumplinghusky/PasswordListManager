@@ -138,8 +138,11 @@ def flag_questions(names):
         names.append(input("Favorite Celebrities/Athletes:"))
         names.append(input("Favorite movie/tv show:"))
     if 's' in flags:
-        names.append('!', '@', '$', '%')
-        names.append(input("!,@,$,% added - any additional? (blank to continue)"))
+        names.append('!')
+        names.append('@')
+        names.append('$')
+        names.append('*')
+        names.append(input("!,@,$,* added - any additional? (blank to continue)"))
     if 'g' in flags:
         phoneNo = input("Enter phone no:")
         dob = input("Target date of birth(MMDDYYYY):")
@@ -179,6 +182,10 @@ def flag_questions(names):
         names.append(input("Favourite color:"))
         names.append(input("Nickname:"))
         names.append(input("Company/School name:"))
+        names.append(input('Childs name:'))
+        names.append(input("Childs nickname:"))
+        names.append(input("Partners name:"))
+        names.append(input("Partners Nickname:"))
         print("Enter all other keywords: ")
         while True:
             inp = input()
@@ -187,7 +194,7 @@ def flag_questions(names):
             names.append(inp)
     if 'h' in flags:
         print("select the attributes that apply to target")
-        print("flags: p-pet, f-family, m-media, s-symbol, g-general, w-work/school, c-custom, A - full selection")
+        print("flags: p-pet, f-family, m-media, s-symbol, g-general, w-work/school, c-custom, A - full selection(no symbols)")
         print("")
         print("for example, pfc - sets profile flags for (P)et (F)amily and (C)ustom")
         print("A - sets all profile flags")
@@ -202,6 +209,8 @@ def pet_question(names):
     num_pets = input('how many pets?')
     for i in range(int(num_pets)):
         names.append(input('pet name:'))
+    if int(num_pets) == 0:
+        flag_questions(names)
 
 def startPermute(names, temp_names):
     for i in names:
