@@ -56,6 +56,7 @@ def WriteToFile(list):
     with open(filename + '.txt', 'w') as f:
         for item in list:
             f.write("%s\n" % item)
+    print(filename + '.txt has been written to same path as main.py')
 
 
 def PostRun(WriteToFile, list):
@@ -130,13 +131,13 @@ def flag_questions(names):
     if "p" in flags:
         pet_question(names)
     if 'f' in flags:
-        names.append(input('Childs name:'))
-        names.append(input("Childs nickname:"))
-        names.append(input("Partners name:"))
-        names.append(input("Partners Nickname:"))
+        names.append(input('Childs name:\n'))
+        names.append(input("Childs nickname:\n"))
+        names.append(input("Partners name:\n"))
+        names.append(input("Partners Nickname:\n"))
     if 'm' in flags:
-        names.append(input("Favorite Celebrities/Athletes:"))
-        names.append(input("Favorite movie/tv show:"))
+        names.append(input("Favorite Celebrities/Athletes:\n"))
+        names.append(input("Favorite movie/tv show:\n"))
     if 's' in flags:
         names.append('!')
         names.append('@')
@@ -144,8 +145,8 @@ def flag_questions(names):
         names.append('*')
         names.append(input("!,@,$,* added - any additional? (blank to continue)"))
     if 'g' in flags:
-        phoneNo = input("Enter phone no:")
-        dob = input("Target date of birth(MMDDYYYY):")
+        phoneNo = input("Enter phone no:\n")
+        dob = input("Target date of birth(MMDDYYYY):\n")
         if (len(dob) == 8):
             month = dob[:2]
             day = dob[2:4]
@@ -153,22 +154,22 @@ def flag_questions(names):
         else:
             print("Wrong format for DOB, make sure it is in format MMDDYYYY")
             flag_questions(names)
-        names.append(input("Current City:"))
-        names.append(input("Country:"))
-        names.append(input("Favourite color:"))
-        names.append(input("Nickname:"))
+        names.append(input("Current City:\n"))
+        names.append(input("Country:\n"))
+        names.append(input("Favourite color:\n"))
+        names.append(input("Nickname:\n"))
     if 'w' in flags:
-        names.append(input("Company/School name:"))
+        names.append(input("Company/School name:\n"))
     if 'c' in flags:
-        print("Enter all other keywords: ")
+        print("Enter all other keywords: \n")
         while True:
             inp = input()
             if inp == '':
                 break
             names.append(inp)
-    if 'A' in flags:
-        phoneNo = input("Enter phone no:")
-        dob = input("Target date of birth(MMDDYYYY):")
+    if 'A' or 'a' in flags:
+        phoneNo = input("Enter phone no:\n")
+        dob = input("Target date of birth(MMDDYYYY):\n")
         if (len(dob) == 8):
             month = dob[:2]
             day = dob[2:4]
@@ -177,16 +178,16 @@ def flag_questions(names):
             print("Wrong format for DOB, make sure it is in format MMDDYYYY")
             flag_questions(names)
         pet_question(names)
-        names.append(input("Current City:"))
-        names.append(input("Country:"))
-        names.append(input("Favourite color:"))
-        names.append(input("Nickname:"))
-        names.append(input("Company/School name:"))
-        names.append(input('Childs name:'))
-        names.append(input("Childs nickname:"))
-        names.append(input("Partners name:"))
-        names.append(input("Partners Nickname:"))
-        print("Enter all other keywords: ")
+        names.append(input("Current City:\n"))
+        names.append(input("Country:\n"))
+        names.append(input("Favourite color:\n"))
+        names.append(input("Nickname:\n"))
+        names.append(input("Company/School name:\n"))
+        names.append(input('Childs name:\n'))
+        names.append(input("Childs nickname:\n"))
+        names.append(input("Partners name:\n"))
+        names.append(input("Partners Nickname:\n"))
+        print("Enter all other keywords: \n")
         while True:
             inp = input()
             if inp == '':
@@ -206,9 +207,9 @@ def flag_questions(names):
         names.remove('')
     return dob, phoneNo, month, day, year
 def pet_question(names):
-    num_pets = input('how many pets?')
+    num_pets = input('how many pets?\n')
     for i in range(int(num_pets)):
-        names.append(input('pet name:'))
+        names.append(input('pet name:\n'))
     if int(num_pets) == 0:
         flag_questions(names)
 
