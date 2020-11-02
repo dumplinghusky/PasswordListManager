@@ -15,9 +15,9 @@ It also is going to be a utility to manage and trim wordlists but those features
 
 Run the interactive program with:
 
-> $python main.py
+> $python3 main.py
 
-The password list will output in the same folder as .py file in .txt format
+For Windows the password list will output in the same folder as .py file in .txt format. On macOSX it will go to your user folder.
 
 ### Requirements
 
