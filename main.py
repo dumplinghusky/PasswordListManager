@@ -6,6 +6,10 @@ list = []
 names = []
 temp_names = []
 phoneNo = ''
+dob=''
+month=''
+day=''
+year=''
 
 print(" __    __              _ _ _     _")
 print("/ / /\ \ \___  _ __ __| | (_)___| |_    /\/\   __ _ _ __   __ _  __ _  ___ _ __")
@@ -49,8 +53,7 @@ def WordListCreator(list):
 
 def WriteToFile(list):
     filename = input("enter a filename without the extension")
-    filename.append(".txt")
-    with open('wordlist.txt', 'w') as f:
+    with open(filename + '.txt', 'w') as f:
         for item in list:
             f.write("%s\n" % item)
 
@@ -68,13 +71,14 @@ def mergewordlists(list):
     if question == "N" or question == "n":
         PostRun(WriteToFile, list)
     elif question == "Y" or question == "y":
+        print("still under development - errors ahead!")
         print("Categories:")
         print("dogs,celebrities,holidays,food,tvmovies")
         urlquestion = input("What is this person interested in?")
         # data = urllib2.urlopen(target_url)
 
     filename = input("enter a file name without extension")
-    filename.append(".txt")
+    filename = filename + '.txt'
     with open(filename, 'w') as f:
         for item in list:
             f.write("%s\n" % item)
@@ -92,91 +96,112 @@ def mergewordlists(list):
 
 def menu_select(list):
     question = input(
-        " Press 1 to merge with a wordlist on HD\n Press 2 to merge with predefined wordlist from repository(requires internet)\n Press 3 to write wordlist.txt")
-    print("")
+        " Press 1 to merge with a wordlist on HD\n Press 2 to merge with predefined wordlist from repository(requires internet)\n Press 3 to write wordlist\n")
+    question = int(question)
     if question == 1:
         mergeexisting(list)
-    elif question == 2:
+    if question == 2:
         mergewordlists(list)
-    elif question == 3:
+    if question == 3:
         WriteToFile(list)
     else:
         print("command not found try again")
         menu_select(list)
 
 
-def questions():
-    global year, dob, phoneNo, month, day
-    dob = input("Target date of birth(MMDDYYYY):")
-    if (len(dob) == 8):
-        month = dob[:2]
-        day = dob[2:4]
-        year = dob[4:]
-    else:
-        print("Wrong format for DOB, make sure it is in format MMDDYYYY")
-        exit()
-    phoneNo = input("Enter phone no:")
-    return dob, phoneNo, month, day, year
+#def questions():
+#    global year, dob, phoneNo, month, day
+#    dob = input("Target date of birth(MMDDYYYY):")
+#   if (len(dob) == 8):
+#      day = dob[2:4]
+#        year = dob[4:]
+#    else:
+#        print("Wrong format for DOB, make sure it is in format MMDDYYYY")
+#        exit()
+#    phoneNo = input("Enter phone no:")
+#    return dob, phoneNo, month, day, year
 
 
 def flag_questions(names):
+    global year, dob, phoneNo, month, day
     flags = input("Enter flags to create profile, h for help, blank to exit\n")
     if flags == '':
         exit()
-    questions = True
-    while questions == True:
-        if "p" in flags:
-            num_pets = input('how many pets?')
-            for i in len(num_pets):
-                names.append[input('pet name:')]
-        if 'f' in flags:
-            names.append[input('Childs name:')]
-            names.append[input("Childs nickname:")]
-            names.append[input("Partners name:")]
-            names.append[input("Partners Nickname:")]
-        if 'm' in flags:
-            names.append(input("Favorite Celebrities/Athletes:"))
-            names.append(input("Favorite movie/tv show:"))
-        if 's' in flags:
-            names.append('!', '@', '$', '%')
-            names.append(input("!,@,$,% added - any additional? (blank to continue)"))
-        if 'g' in flags:
-            names.append(input("Current City:"))
-            names.append(input("Country:"))
-            names.append(input("Favourite color:"))
-            names.append(input("Nickname:"))
-        if 'w' in flags:
-            names.append(input("Company/School name:"))
-        if 'c' in flags:
-            print("Enter all other keywords: ")
-            while True:
-                inp = input()
+    if "p" in flags:
+        pet_question(names)
+    if 'f' in flags:
+        names.append(input('Childs name:'))
+        names.append(input("Childs nickname:"))
+        names.append(input("Partners name:"))
+        names.append(input("Partners Nickname:"))
+    if 'm' in flags:
+        names.append(input("Favorite Celebrities/Athletes:"))
+        names.append(input("Favorite movie/tv show:"))
+    if 's' in flags:
+        names.append('!', '@', '$', '%')
+        names.append(input("!,@,$,% added - any additional? (blank to continue)"))
+    if 'g' in flags:
+        phoneNo = input("Enter phone no:")
+        dob = input("Target date of birth(MMDDYYYY):")
+        if (len(dob) == 8):
+            month = dob[:2]
+            day = dob[2:4]
+            year = dob[4:]
+        else:
+            print("Wrong format for DOB, make sure it is in format MMDDYYYY")
+            flag_questions(names)
+        names.append(input("Current City:"))
+        names.append(input("Country:"))
+        names.append(input("Favourite color:"))
+        names.append(input("Nickname:"))
+    if 'w' in flags:
+        names.append(input("Company/School name:"))
+    if 'c' in flags:
+        print("Enter all other keywords: ")
+        while True:
+            inp = input()
             if inp == '':
                 break
-                names.append(inp)
-        if 'h' in flags:
-            print("flags are p-pet, f-family, m-media, s-symbol, g-general, w-work/school, c-custom")
-            print("for example, input: pfc")
-            print("sets profile flags for pet family and custom")
-            print("at least 3 flags recommended, blank to continue")
-            print("")
-            flag_questions(names)
+            names.append(inp)
+    if 'A' in flags:
+        phoneNo = input("Enter phone no:")
+        dob = input("Target date of birth(MMDDYYYY):")
+        if (len(dob) == 8):
+            month = dob[:2]
+            day = dob[2:4]
+            year = dob[4:]
         else:
-            questions = False
-        # cleans out '' from names list
+            print("Wrong format for DOB, make sure it is in format MMDDYYYY")
+            flag_questions(names)
+        pet_question(names)
+        names.append(input("Current City:"))
+        names.append(input("Country:"))
+        names.append(input("Favourite color:"))
+        names.append(input("Nickname:"))
+        names.append(input("Company/School name:"))
+        print("Enter all other keywords: ")
+        while True:
+            inp = input()
+            if inp == '':
+                break
+            names.append(inp)
+    if 'h' in flags:
+        print("select the attributes that apply to target")
+        print("flags: p-pet, f-family, m-media, s-symbol, g-general, w-work/school, c-custom, A - full selection")
+        print("")
+        print("for example, pfc - sets profile flags for (P)et (F)amily and (C)ustom")
+        print("A - sets all profile flags")
+        print("at least 3 flags recommended")
+        print("")
+        flag_questions(names)
+# cleans out '' from names list
     while ('' in names):
         names.remove('')
-    return names
-
-    print("Enter all other keywords: ")
-    while True:
-        inp = input()
-        if inp == '':
-            break
-        names.append(inp)
-    while ('' in names):
-        names.remove('')
-
+    return dob, phoneNo, month, day, year
+def pet_question(names):
+    num_pets = input('how many pets?')
+    for i in range(int(num_pets)):
+        names.append(input('pet name:'))
 
 def startPermute(names, temp_names):
     for i in names:
@@ -192,7 +217,7 @@ def startPermute(names, temp_names):
 # wildcards
 
 def run():
-    questions()
+    #questions()
     flag_questions(names)
     # ListOfImportantWords()
     startPermute(names, temp_names)
