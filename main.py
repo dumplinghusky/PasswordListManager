@@ -98,12 +98,16 @@ def mergewordlists(list):
 def menu_select(list):
     question = input(
         " Press 1 to merge with a wordlist on HD\n Press 2 to merge with predefined wordlist from repository(requires internet)\n Press 3 to write wordlist.txt")
-    if question == 1:
+    elif question == 1:
         mergeexisting(list)
-    if question == 2:
+    elif question == 2:
         mergewordlists(list)
-    if question == 3:
+    elif question == 3:
         WriteToFile(list)
+    else
+        print("command not found try again")
+        menu_select(list)
+
 def questions():
     global year, dob, phoneNo, month, day
     dob = input("Date of birth(MMDDYYYY):")
