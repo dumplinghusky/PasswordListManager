@@ -14,16 +14,6 @@ print(" \  /\  / (_) | | | (_| | | \__ \ |_  / /\/\ \ (_| | | | | (_| | (_| |  _
 print("  \/  \/ \___/|_|  \__,_|_|_|___/\__| \/    \/\__,_|_| |_|\__,_|\__, |\___|_|")
 print("                                                                |___/         ")
 
-dob = input("Date of birth(MMDDYYYY):")
-if (len(dob) == 8):
-    month = dob[:2]
-    day = dob[2:4]
-    year = dob[4:]
-else:
-    print("Wrong format for DOB, make sure it is 8 numbers in MMDDYYYY")
-    exit()
-
-phoneNo = input("Enter phone no:")
 
 
 def ListOfImportantWords():
@@ -164,21 +154,10 @@ def questions():
 questions()
 
 
-
-questions()
-
 ListOfImportantWords()
 for i in names:
     permute(i)
 names = names + temp_names
-
-
-WordListCreator(list)
-mergewordlists(list)
-
-
-WordListCreator(list)
-mergewordlists(list)
 
 
 WordListCreator(list)
