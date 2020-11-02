@@ -82,21 +82,30 @@ def WriteToFile(list):
         for item in list:
             f.write("%s\n" % item)
 
-def PostRun(WriteToFile,list):
-    question = input("Do you want to merge with another wordlist on your computer? (Y/N)")
-    if question == "N" or question == "n":
-        WriteToFile(list)
-    elif question == "Y" or question == "y":
-        print("penis-aka still underdevelopment")
+    def mergeexisting(list):
+        print("still underdevelopment")
+
+
 def mergewordlists(list):
     question = input("Merge with predefined wordlist?(requires internet)(Y/N)")
     if question == "N" or question == "n":
-        PostRun(WriteToFile,list)
+        PostRun(WriteToFile, list)
     elif question == "Y" or question == "y":
         print("Categories:")
         print("dogs,celebrities,holidays,food,tvmovies")
         urlquestion = input("What is this person interested in?")
-        #data = urllib2.urlopen(target_url)
+        # data = urllib2.urlopen(target_url)
+
+
+def menu_select(list):
+    question = input(
+        " Press 1 to merge with another\n Press 2 to merge with predefined wordlist?(requires internet)\n Press 3 to write to wordlist")
+    if question == 1:
+        mergeexisting(list)
+    if question == 2:
+        mergewordlists(list)
+    if question == 3:
+        WriteToFile(list)
 def questions():
     global year, dob, phoneNo, month, day
     dob = input("Date of birth(MMDDYYYY):")
@@ -123,5 +132,5 @@ for i in names:
 names = names + temp_names
 
 WordListCreator(list)
-mergewordlists(list)
+menu_select(list)
 
