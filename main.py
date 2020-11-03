@@ -38,17 +38,40 @@ def permute(inp):
         temp_names.append(temp)
 
 
-def WordListCreator(list):
-    for word in names:
-        for i in range(0, len(word) + 1):
-            list.append(word[:i] + day + word[i:])
-            list.append(word[:i] + month + word[i:])
-            list.append(word[:i] + year + word[i:])
-            if len(year) == 4:
-                list.append(word[:i] + year[2:] + word[i:])
-            list.append(word[:i] + phoneNo + word[i:])
-    if not phoneNo == '':
-        list.append(phoneNo)
+def WordListCreator(list,bigboiwordlist):
+    
+    if bigboiwordlist == True:
+        for word in names:
+            #for i in range 0-length of word + 1
+            for i in range(0, len(word) + 1):
+                #add to list the word of to the i value plus birthday +
+                list.append(word[:i] + day + word[i:])
+                list.append(word[:i] + month + word[i:])
+                #add word to the i value plus dob year 
+                list.append(word[:i] + year + word[i:])
+                #if the length of year is equal to four
+                if len(year) == 4:
+                    list.append(word[:i] + year[2:] + word[i:])
+                list.append(word[:i] + phoneNo + word[i:])
+        if not phoneNo == '':
+            list.append(phoneNo)
+    else:
+        #for iterable word in names list
+        for word in names:
+            #for i in range 0-length of word + 1
+            for i in range(0, len(word) + 1):
+                #add to list the word of to the i value plus birthday +
+                list.append(word[:i] + day + word[i:])
+                list.append(word[:i] + month + word[i:])
+                #add word to the i value plus dob year 
+                list.append(word[:i] + year + word[i:])
+                #if the length of year is equal to four
+                if len(year) == 4:
+                    list.append(word[:i] + year[2:] + word[i:])
+                list.append(word[:i] + phoneNo + word[i:])
+        if not phoneNo == '':
+            list.append(phoneNo)
+         
 
 
 def WriteToFile(list):
@@ -117,10 +140,14 @@ def menu_select(list):
 
 
 def flag_questions(names):
-    global year, dob, phoneNo, month, day, bigboiwordlist
+    global year, dob, phoneNo, month, day, bigboiwordlist, areacode, last_four
     flags = input("Enter command flags to create or manage wordlists, h for help \n\n\n")
     if flags == '':
         exit()
+    if 'a' in flags:
+       flags = '-xpfmsgwc'
+    if '-x' in flags:
+        bigboiwordlist = True
     if "p" in flags:
         pet_question(names)
     if 'f' in flags:
@@ -138,7 +165,10 @@ def flag_questions(names):
         names.append('*')
         names.append(input("!,@,$,* added - any additional? (blank to continue)"))
     if 'g' in flags:
-        phoneNo = input("Enter phone no:\n")
+        phoneNo = input("Enter phone no:(no countrycode)\n")
+        if (len(phoneNo)) == 10:
+            areacode = phoneNo[:3]
+            
         dob = input("Target date of birth(MMDDYYYY):\n")
         if (len(dob) == 8):
             month = dob[:2]
@@ -146,40 +176,16 @@ def flag_questions(names):
             year = dob[4:]
         else:
             print("Wrong format for DOB, make sure it is in format MMDDYYYY")
+            print("Sending back to main menu")
             flag_questions(names)
         names.append(input("Current City:\n"))
         names.append(input("Country:\n"))
         names.append(input("Favourite color:\n"))
         names.append(input("Nickname:\n"))
+        names.append(input("ZipCode"))
     if 'w' in flags:
         names.append(input("Company/School name:\n"))
     if 'c' in flags:
-        print("Enter all other keywords: \n")
-        while True:
-            inp = input()
-            if inp == '':
-                break
-            names.append(inp)
-    if 'a' in flags:
-        phoneNo = input("Enter phone no:\n")
-        dob = input("Target date of birth(MMDDYYYY):\n")
-        if (len(dob) == 8):
-            month = dob[:2]
-            day = dob[2:4]
-            year = dob[4:]
-        else:
-            print("Wrong format for DOB, make sure it is in format MMDDYYYY")
-            flag_questions(names)
-        pet_question(names)
-        names.append(input("Current City:\n"))
-        names.append(input("Country:\n"))
-        names.append(input("Favourite color:\n"))
-        names.append(input("Nickname:\n"))
-        names.append(input("Company/School name:\n"))
-        names.append(input('Childs name:\n'))
-        names.append(input("Childs nickname:\n"))
-        names.append(input("Partners name:\n"))
-        names.append(input("Partners Nickname:\n"))
         print("Enter all other keywords: \n")
         while True:
             inp = input()
@@ -200,12 +206,17 @@ def flag_questions(names):
         files = os.listdir(location)
         for f in files:
             print(f)
+        menuselect()
         #with open(location + '.txt', 'w') as f:
         #for item in list:
         #    f.write("%s\n" % item)
         #for line in file:
-            
-        menuselect()
+    else:
+        print("Command not recognized")
+        print("try again")
+        flag_questions(names)
+        
+        
 # cleans out '' from names list
     while ('' in names):
         names.remove('')
@@ -217,12 +228,11 @@ def pet_question(names):
     if int(num_pets) == 0:
         flag_questions(names)
 
-def startPermute(names, temp_names,bigboiwordlist):
+def startPermute(names, temp_names):
     for i in names:
         permute(i)
     names = names + temp_names
-    if bigboiwordlist == True:
-        names = [item for names in zip(names,temp_names) for item in temp_names]
+   
 
 
 
@@ -237,8 +247,8 @@ def run():
     #questions()
     flag_questions(names)
     # ListOfImportantWords()
-    startPermute(names, temp_names, bigboiwordlist)
-    WordListCreator(list)
+    startPermute(names, temp_names)
+    WordListCreator(list,bigboiwordlist)
     menu_select(list)
 
 
