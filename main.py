@@ -12,6 +12,7 @@ year=''
 bigboiwordlist = False
 questioncheck = True
 flags = ''
+donecheck = False
 print("\n\n\n")
 print(" __    __              _ _ _     _")
 print("/ / /\ \ \___  _ __ __| | (_)___| |_    /\/\   __ _ _ __   __ _  __ _  ___ _ __")
@@ -83,7 +84,7 @@ def WriteToFile(list):
             f.write("%s\n" % item)
     print(filename + '.txt has been written to same path as main.py')
     questioncheck = True
-    flag_questions(names,menu_select,questioncheck)
+    flag_questions(names,menu_select,questioncheck,donecheck)
 
 
 
@@ -143,13 +144,12 @@ def menu_select(list,mergeexisting,mergewordlists):
 #    return dob, phoneNo, month, day, year
 
 
-def flag_questions(names,menu_select,questioncheck):
+def flag_questions(names,menu_select,questioncheck,donecheck):
     global year, dob, phoneNo, month, day, bigboiwordlist, areacode, last_four,mergeexisting,mergewordlists, flags
-    donecheck = False
     while questioncheck == True:
         flags = input("Enter command flags to create or manage wordlists, h for help \n\n\n")
         questioncheck = False
-        flag_questions(names,menu_select,questioncheck)
+        flag_questions(names,menu_select,questioncheck,donecheck)
     if flags == '':
         exit()
     if 'a' in flags:
@@ -197,7 +197,7 @@ def flag_questions(names,menu_select,questioncheck):
         else:
             print("Wrong format for DOB, make sure it is in format MMDDYYYY")
             print("Sending back to main menu")
-            flag_questions(names,menu_select,questioncheck)
+            flag_questions(names,menu_select,questioncheck,donecheck)
         names.append(input("Current City:\n"))
         names.append(input("Country:\n"))
         names.append(input("Favourite color:\n"))
@@ -223,8 +223,10 @@ def flag_questions(names,menu_select,questioncheck):
         print("A - sets all profile flags")
         print("at least 3 flags recommended")
         print("")
-        flag_questions(names,menu_select,questioncheck)
-        donecheck = True
+        donecheck = False
+        questioncheck = True
+        flag_questions(names,menu_select,questioncheck,donecheck)
+        
     if 'z' in flags:
         location = input("location of wordlists to manage?")
         files = os.listdir(location)
@@ -235,7 +237,7 @@ def flag_questions(names,menu_select,questioncheck):
         WordListCreator(list,bigboiwordlist)
         menu_select(list,mergeexisting,mergewordlists)
         while ('' in names):
-                names.remove('')
+            names.remove('')
         
         #with open(location + '.txt', 'w') as f:
         #for item in list:
@@ -244,7 +246,7 @@ def flag_questions(names,menu_select,questioncheck):
     else:
         print("Command not recognized")
         print("try again")
-        flag_questions(names,menu_select,questioncheck)
+        flag_questions(names,menu_select,questioncheck,donecheck)
         
         
 # cleans out '' from names list
@@ -268,7 +270,7 @@ def startPermute(names, temp_names):
 
 def run():
     #questions()
-    flag_questions(names,menu_select,questioncheck)
+    flag_questions(names,menu_select,questioncheck,donecheck)
     # ListOfImportantWords()
     
 run()
