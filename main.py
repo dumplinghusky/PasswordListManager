@@ -196,10 +196,11 @@ def flag_questions(names,menu_select,questioncheck):
             month = dob[:2]
             day = dob[2:4]
             year = dob[4:]
+            pass
         if len(dob) == 0:
             pass
 
-        else:
+        if (len(dob) >= 9):
             print("Wrong format for DOB, make sure it is in format MMDDYYYY")
             print("Sending back to main menu")
             flag_questions(names,menu_select,questioncheck)
@@ -250,9 +251,6 @@ def flag_questions(names,menu_select,questioncheck):
         print("try again")
         flag_questions(names,menu_select,questioncheck)
         
-        
-# cleans out '' from names list
-
     return dob, phoneNo, month, day, year,
 
 def startPermute(names, temp_names):
