@@ -211,9 +211,9 @@ def flag_questions(names):
         #for item in list:
         #    f.write("%s\n" % item)
         #for line in file:
-    else:
-        print("Command not recognized")
-        print("try again")
+    #elif:
+     #   print("Command not recognized")
+     #   print("try again")
         flag_questions(names)
         
         
