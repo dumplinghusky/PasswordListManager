@@ -196,6 +196,9 @@ def flag_questions(names,menu_select,questioncheck):
             month = dob[:2]
             day = dob[2:4]
             year = dob[4:]
+        if len(dob) == 0:
+            pass
+
         else:
             print("Wrong format for DOB, make sure it is in format MMDDYYYY")
             print("Sending back to main menu")
@@ -225,8 +228,10 @@ def flag_questions(names,menu_select,questioncheck):
         print("A - sets all profile flags")
         print("at least 3 flags recommended")
         print("")
+        flags = ''
+        questioncheck = True
         flag_questions(names,menu_select,questioncheck)
-        donecheck = True
+        
     if 'z' in flags:
         location = input("location of wordlists to manage?")
         files = os.listdir(location)
