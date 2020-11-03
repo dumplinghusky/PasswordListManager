@@ -60,8 +60,6 @@ def WordListCreator(list,bigboiwordlist):
     else:
         #for iterable word in names list
         for word in names:
-            while ('' in names):
-                names.remove('')
             #for i in range 0-length of word + 1
             for i in range(0, len(word) + 1):
                 #add to list the word of to the i value plus birthday +
@@ -196,11 +194,7 @@ def flag_questions(names,menu_select,questioncheck):
             month = dob[:2]
             day = dob[2:4]
             year = dob[4:]
-            pass
-        if len(dob) == 0:
-            pass
-
-        if (len(dob) >= 9):
+        else:
             print("Wrong format for DOB, make sure it is in format MMDDYYYY")
             print("Sending back to main menu")
             flag_questions(names,menu_select,questioncheck)
@@ -229,10 +223,8 @@ def flag_questions(names,menu_select,questioncheck):
         print("A - sets all profile flags")
         print("at least 3 flags recommended")
         print("")
-        flags = ''
-        questioncheck = True
         flag_questions(names,menu_select,questioncheck)
-        
+        donecheck = True
     if 'z' in flags:
         location = input("location of wordlists to manage?")
         files = os.listdir(location)
@@ -242,6 +234,9 @@ def flag_questions(names,menu_select,questioncheck):
         startPermute(names, temp_names)
         WordListCreator(list,bigboiwordlist)
         menu_select(list,mergeexisting,mergewordlists)
+        while ('' in names):
+                names.remove('')
+        
         #with open(location + '.txt', 'w') as f:
         #for item in list:
         #    f.write("%s\n" % item)
@@ -251,6 +246,9 @@ def flag_questions(names,menu_select,questioncheck):
         print("try again")
         flag_questions(names,menu_select,questioncheck)
         
+        
+# cleans out '' from names list
+
     return dob, phoneNo, month, day, year,
 
 def startPermute(names, temp_names):
