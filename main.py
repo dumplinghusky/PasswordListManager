@@ -10,6 +10,8 @@ month=''
 day=''
 year=''
 bigboiwordlist = False
+questioncheck = True
+flags = ''
 print("\n\n\n")
 print(" __    __              _ _ _     _")
 print("/ / /\ \ \___  _ __ __| | (_)___| |_    /\/\   __ _ _ __   __ _  __ _  ___ _ __")
@@ -58,6 +60,8 @@ def WordListCreator(list,bigboiwordlist):
     else:
         #for iterable word in names list
         for word in names:
+            while ('' in names):
+                names.remove('')
             #for i in range 0-length of word + 1
             for i in range(0, len(word) + 1):
                 #add to list the word of to the i value plus birthday +
@@ -80,6 +84,8 @@ def WriteToFile(list):
         for item in list:
             f.write("%s\n" % item)
     print(filename + '.txt has been written to same path as main.py')
+    questioncheck = True
+    flag_questions(names,menu_select,questioncheck)
 
 
 
@@ -100,8 +106,8 @@ def mergewordlists(list):
         for item in list:
             f.write("%s\n" % item)
 
-    def mergeexisting(list):
-        print("still under development")
+def mergeexisting(list):
+    print("still under development")
 
 
 def mergewordlists(list):
@@ -111,7 +117,7 @@ def mergewordlists(list):
     # data = urllib2.urlopen(target_url)
 
 
-def menu_select(list):
+def menu_select(list,mergeexisting,mergewordlists):
     question = input(
         " Press 1 to merge with a wordlist on HD\n Press 2 to merge with predefined wordlist from repository(requires internet)\n Press 3 to write wordlist\n")
     question = int(question)
@@ -139,25 +145,40 @@ def menu_select(list):
 #    return dob, phoneNo, month, day, year
 
 
-def flag_questions(names):
-    global year, dob, phoneNo, month, day, bigboiwordlist, areacode, last_four
-    flags = input("Enter command flags to create or manage wordlists, h for help \n\n\n")
+def flag_questions(names,menu_select,questioncheck):
+    global year, dob, phoneNo, month, day, bigboiwordlist, areacode, last_four,mergeexisting,mergewordlists, flags
+    donecheck = False
+    while questioncheck == True:
+        flags = input("Enter command flags to create or manage wordlists, h for help \n\n\n")
+        questioncheck = False
+        flag_questions(names,menu_select,questioncheck)
     if flags == '':
         exit()
     if 'a' in flags:
-       flags = '-xpfmsgwc'
+        flags = '-xpfmsgwc'
+        donecheck = True
     if '-x' in flags:
         bigboiwordlist = True
     if "p" in flags:
-        pet_question(names)
+        num_pets = input('how many pets?\n')
+        if int(num_pets) == 0:
+            flags = '-xfmsgwc'
+            questioncheck = False
+        else:
+            for i in range(int(num_pets)):
+                names.append(input('pet name:\n'))
+                donecheck = True
+        
     if 'f' in flags:
         names.append(input('Childs name:\n'))
         names.append(input("Childs nickname:\n"))
         names.append(input("Partners name:\n"))
         names.append(input("Partners Nickname:\n"))
+        donecheck = True
     if 'm' in flags:
         names.append(input("Favorite Celebrities/Athletes:\n"))
         names.append(input("Favorite movie/tv show:\n"))
+        donecheck = True
     if 's' in flags:
         names.append('!')
         names.append('@')
@@ -168,6 +189,7 @@ def flag_questions(names):
         phoneNo = input("Enter phone no:(no countrycode)\n")
         if (len(phoneNo)) == 10:
             areacode = phoneNo[:3]
+            last_four = phoneNo[6:]
             
         dob = input("Target date of birth(MMDDYYYY):\n")
         if (len(dob) == 8):
@@ -177,14 +199,16 @@ def flag_questions(names):
         else:
             print("Wrong format for DOB, make sure it is in format MMDDYYYY")
             print("Sending back to main menu")
-            flag_questions(names)
+            flag_questions(names,menu_select,questioncheck)
         names.append(input("Current City:\n"))
         names.append(input("Country:\n"))
         names.append(input("Favourite color:\n"))
         names.append(input("Nickname:\n"))
         names.append(input("ZipCode"))
+        donecheck = True
     if 'w' in flags:
         names.append(input("Company/School name:\n"))
+        donecheck = True
     if 'c' in flags:
         print("Enter all other keywords: \n")
         while True:
@@ -192,41 +216,39 @@ def flag_questions(names):
             if inp == '':
                 break
             names.append(inp)
+        donecheck = True
     if 'h' in flags:
-        print("select the attributes that apply to target")
+        print("select the attributes that apply to target\n Using a or g recommended")
         print("flags: p-pet, f-family, m-media, s-symbol, g-general, w-work/school, c-custom, a - full selection(no symbols)\n z - skip to management , blank to exit")
         print("***TO TURN ON COMPLEX WORDLISTS USE '-x'***")
         print("for example, pfc -x - sets profile flags for (P)et (F)amily (C)ustom and complex wordlists")
         print("A - sets all profile flags")
         print("at least 3 flags recommended")
         print("")
-        flag_questions(names)
+        flag_questions(names,menu_select,questioncheck)
+        donecheck = True
     if 'z' in flags:
         location = input("location of wordlists to manage?")
         files = os.listdir(location)
         for f in files:
             print(f)
-        menuselect()
+    if donecheck == True:
+        startPermute(names, temp_names)
+        WordListCreator(list,bigboiwordlist)
+        menu_select(list,mergeexisting,mergewordlists)
         #with open(location + '.txt', 'w') as f:
         #for item in list:
         #    f.write("%s\n" % item)
         #for line in file:
-    #elif:
-     #   print("Command not recognized")
-     #   print("try again")
-        flag_questions(names)
+    else:
+        print("Command not recognized")
+        print("try again")
+        flag_questions(names,menu_select,questioncheck)
         
         
 # cleans out '' from names list
-    while ('' in names):
-        names.remove('')
-    return dob, phoneNo, month, day, year
-def pet_question(names):
-    num_pets = input('how many pets?\n')
-    for i in range(int(num_pets)):
-        names.append(input('pet name:\n'))
-    if int(num_pets) == 0:
-        flag_questions(names)
+
+    return dob, phoneNo, month, day, year,
 
 def startPermute(names, temp_names):
     for i in names:
@@ -245,12 +267,9 @@ def startPermute(names, temp_names):
 
 def run():
     #questions()
-    flag_questions(names)
+    flag_questions(names,menu_select,questioncheck)
     # ListOfImportantWords()
-    startPermute(names, temp_names)
-    WordListCreator(list,bigboiwordlist)
-    menu_select(list)
-
-
+    
 run()
+
 
