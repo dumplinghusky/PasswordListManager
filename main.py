@@ -1,5 +1,4 @@
 import os
-
 # import urllib2
 
 list = []
@@ -10,14 +9,15 @@ dob=''
 month=''
 day=''
 year=''
-
+bigboiwordlist = False
+print("\n\n\n")
 print(" __    __              _ _ _     _")
 print("/ / /\ \ \___  _ __ __| | (_)___| |_    /\/\   __ _ _ __   __ _  __ _  ___ _ __")
 print("\ \/  \/ / _ \| '__/ _` | | / __| __|  /    \ / _` | '_ \ / _` |/ _` |/ _ \ '__|")
 print(" \  /\  / (_) | | | (_| | | \__ \ |_  / /\/\ \ (_| | | | | (_| | (_| |  __/ |")
 print("  \/  \/ \___/|_|  \__,_|_|_|___/\__| \/    \/\__,_|_| |_|\__,_|\__, |\___|_|")
 print("                                                                |___/         ")
-
+print("\n\n\n")
 
 def permute(inp):
     n = len(inp)
@@ -58,13 +58,6 @@ def WriteToFile(list):
             f.write("%s\n" % item)
     print(filename + '.txt has been written to same path as main.py')
 
-
-def PostRun(WriteToFile, list):
-    question = input("Do you want to merge with another wordlist on your computer? (Y/N)")
-    if question == "N" or question == "n":
-        WriteToFile(list)
-    elif question == "Y" or question == "y":
-        print("still under development")
 
 
 def mergewordlists(list):
@@ -124,8 +117,8 @@ def menu_select(list):
 
 
 def flag_questions(names):
-    global year, dob, phoneNo, month, day
-    flags = input("Enter flags to create profile, h for help, blank to exit\n")
+    global year, dob, phoneNo, month, day, bigboiwordlist
+    flags = input("Enter command flags to create or manage wordlists, h for help \n\n\n")
     if flags == '':
         exit()
     if "p" in flags:
@@ -167,7 +160,7 @@ def flag_questions(names):
             if inp == '':
                 break
             names.append(inp)
-    if 'A' or 'a' in flags:
+    if 'a' in flags:
         phoneNo = input("Enter phone no:\n")
         dob = input("Target date of birth(MMDDYYYY):\n")
         if (len(dob) == 8):
@@ -195,13 +188,24 @@ def flag_questions(names):
             names.append(inp)
     if 'h' in flags:
         print("select the attributes that apply to target")
-        print("flags: p-pet, f-family, m-media, s-symbol, g-general, w-work/school, c-custom, A - full selection(no symbols)")
-        print("")
-        print("for example, pfc - sets profile flags for (P)et (F)amily and (C)ustom")
+        print("flags: p-pet, f-family, m-media, s-symbol, g-general, w-work/school, c-custom, a - full selection(no symbols)\n z - skip to management , blank to exit")
+        print("***TO TURN ON COMPLEX WORDLISTS USE '-x'***")
+        print("for example, pfc -x - sets profile flags for (P)et (F)amily (C)ustom and complex wordlists")
         print("A - sets all profile flags")
         print("at least 3 flags recommended")
         print("")
         flag_questions(names)
+    if 'z' in flags:
+        location = input("location of wordlists to manage?")
+        files = os.listdir(location)
+        for f in files:
+            print(f)
+        #with open(location + '.txt', 'w') as f:
+        #for item in list:
+        #    f.write("%s\n" % item)
+        #for line in file:
+            
+        menuselect()
 # cleans out '' from names list
     while ('' in names):
         names.remove('')
@@ -213,10 +217,13 @@ def pet_question(names):
     if int(num_pets) == 0:
         flag_questions(names)
 
-def startPermute(names, temp_names):
+def startPermute(names, temp_names,bigboiwordlist):
     for i in names:
         permute(i)
     names = names + temp_names
+    if bigboiwordlist == True:
+        names = [item for names in zip(names,temp_names) for item in temp_names]
+
 
 
 # things to add
@@ -230,7 +237,7 @@ def run():
     #questions()
     flag_questions(names)
     # ListOfImportantWords()
-    startPermute(names, temp_names)
+    startPermute(names, temp_names, bigboiwordlist)
     WordListCreator(list)
     menu_select(list)
 
